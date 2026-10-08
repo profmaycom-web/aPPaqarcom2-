@@ -1,0 +1,13 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "build/**"
+    - android/**
+    - ios/**
+  errors:
+    sort_pub_dependencies: ignore
+    public_member_api_docs: ignore
+    lines_longer_than_80_chars: ignore
+    avoid_dynamic_calls: ignore
+    use_build_context_synchronously: ignore

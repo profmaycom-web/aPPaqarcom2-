@@ -1,0 +1,16 @@
+enum SystemSetting {
+  maintenanceMode,
+  currencySymbol,
+  languageType,
+  defaultLanguage,
+  forceUpdate,
+  androidVersion,
+  numberWithSuffix,
+  iosVersion,
+  demoMode,
+  language,
+  numberWithOtpLogin,
+  socialLogin,
+  emailPasswordLogin,
+  mapServiceProvider,
+}

@@ -1,0 +1,198 @@
+import 'package:ebroker/data/helper/filter.dart';
+import 'package:ebroker/data/model/agent/agents_property_model.dart';
+import 'package:ebroker/data/repositories/agents_repository.dart';
+import 'package:ebroker/exports/main_export.dart';
+
+abstract class FetchAgentsPropertyState {}
+
+final class FetchAgentsPropertyInitial extends FetchAgentsPropertyState {}
+
+final class FetchAgentsPropertyLoading extends FetchAgentsPropertyState {}
+
+final class FetchAgentsPropertySuccess extends FetchAgentsPropertyState {
+  FetchAgentsPropertySuccess({
+    required this.offset,
+    required this.total,
+    required this.agentsProperty,
+    required this.isLoadingMore,
+    required this.hasLoadMoreError,
+    this.filter,
+    this.searchQuery,
+  });
+
+  final int offset;
+  final int total;
+  final AgentPropertyProjectModel agentsProperty;
+  final bool isLoadingMore;
+  final bool hasLoadMoreError;
+  final FilterApply? filter;
+  final String? searchQuery;
+
+  FetchAgentsPropertySuccess copyWith({
+    AgentPropertyProjectModel? agentsProperty,
+    int? total,
+    int? offset,
+    bool? isLoadingMore,
+    bool? hasLoadMoreError,
+    FilterApply? filter,
+    String? searchQuery,
+  }) {
+    return FetchAgentsPropertySuccess(
+      agentsProperty: agentsProperty ?? this.agentsProperty,
+      total: total ?? this.total,
+      offset: offset ?? this.offset,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      hasLoadMoreError: hasLoadMoreError ?? this.hasLoadMoreError,
+      filter: filter ?? this.filter,
+      searchQuery: searchQuery ?? this.searchQuery,
+    );
+  }
+}
+
+final class FetchAgentsPropertyFailure extends FetchAgentsPropertyState {
+  FetchAgentsPropertyFailure(this.errorMessage);
+
+  final String errorMessage;
+}
+
+class FetchAgentsPropertyCubit extends Cubit<FetchAgentsPropertyState> {
+  FetchAgentsPropertyCubit() : super(FetchAgentsPropertyInitial());
+
+  final AgentsRepository agentsRepository = AgentsRepository();
+
+  Future<void> fetchAgentsProperty({
+    required String agentId,
+    required bool forceRefresh,
+    required bool isAdmin,
+    FilterApply? filter,
+    String? searchQuery,
+  }) async {
+    try {
+      if (forceRefresh) {
+        emit(FetchAgentsPropertyLoading());
+      }
+      final (:total, :agentsProperty) = await agentsRepository
+          .fetchAgentProperties(
+            offset: 0,
+            agentId: agentId,
+            isAdmin: isAdmin,
+            limit: AppConfig.apiDataLoadLimit,
+            filter: filter,
+            searchQuery: searchQuery,
+          );
+      emit(
+        FetchAgentsPropertySuccess(
+          offset: 0,
+          total: total,
+          agentsProperty: agentsProperty,
+          isLoadingMore: false,
+          hasLoadMoreError: false,
+          filter: filter,
+          searchQuery: searchQuery,
+        ),
+      );
+    } on ApiException catch (e) {
+      emit(FetchAgentsPropertyFailure(e.errorMessage));
+    }
+  }
+
+  bool isLoadingMore() {
+    if (state is FetchAgentsPropertySuccess) {
+      return (state as FetchAgentsPropertySuccess).isLoadingMore;
+    }
+    return false;
+  }
+
+  Future<void> fetchMore({required bool isAdmin}) async {
+    if (state is FetchAgentsPropertySuccess) {
+      try {
+        final scrollSuccess = state as FetchAgentsPropertySuccess;
+        if (scrollSuccess.isLoadingMore) return;
+        emit(
+          (state as FetchAgentsPropertySuccess).copyWith(isLoadingMore: true),
+        );
+
+        final (:total, :agentsProperty) = await agentsRepository
+            .fetchAgentProperties(
+              agentId: (state as FetchAgentsPropertySuccess)
+                  .agentsProperty
+                  .customerData
+                  .id
+                  .toString(),
+              offset: (state as FetchAgentsPropertySuccess)
+                  .agentsProperty
+                  .propertiesData
+                  .length,
+              isAdmin: isAdmin,
+              filter: (state as FetchAgentsPropertySuccess).filter,
+              searchQuery: (state as FetchAgentsPropertySuccess).searchQuery,
+            );
+
+        final currentState = state as FetchAgentsPropertySuccess;
+
+        emit(
+          FetchAgentsPropertySuccess(
+            isLoadingMore: false,
+            hasLoadMoreError: false,
+            agentsProperty: currentState.agentsProperty.copyWith(
+              propertiesData: [
+                ...currentState.agentsProperty.propertiesData,
+                ...agentsProperty.propertiesData,
+              ],
+            ),
+            offset: (state as FetchAgentsPropertySuccess)
+                .agentsProperty
+                .propertiesData
+                .length,
+            total: total,
+            filter: currentState.filter,
+            searchQuery: currentState.searchQuery,
+          ),
+        );
+      } on Object catch (_) {
+        emit(
+          (state as FetchAgentsPropertySuccess).copyWith(
+            isLoadingMore: false,
+            hasLoadMoreError: true,
+          ),
+        );
+      }
+    }
+  }
+
+  bool hasMoreData() {
+    if (state is FetchAgentsPropertySuccess) {
+      final agentsProperty =
+          (state as FetchAgentsPropertySuccess).agentsProperty;
+      final total = (state as FetchAgentsPropertySuccess).total;
+      return agentsProperty.propertiesData.length < total;
+    }
+    return false;
+  }
+
+  Future<void> searchAgentsProperties({
+    required String agentId,
+    required bool isAdmin,
+    required String searchQuery,
+  }) async {
+    try {
+      final (:total, :agentsProperty) = await agentsRepository
+          .searchAgentProperties(
+            agentId: agentId,
+            isAdmin: isAdmin,
+            searchQuery: searchQuery,
+          );
+      emit(
+        FetchAgentsPropertySuccess(
+          offset: 0,
+          total: total,
+          agentsProperty: agentsProperty,
+          isLoadingMore: false,
+          hasLoadMoreError: false,
+        ),
+      );
+    } on ApiException catch (e) {
+      emit(FetchAgentsPropertyFailure(e.errorMessage));
+    }
+  }
+}
