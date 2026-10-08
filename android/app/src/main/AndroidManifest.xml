@@ -32,7 +32,7 @@
     </queries>
 
     <application
-        android:label="eBroker"
+        android:label="عقاركم"
         android:requestLegacyExternalStorage="true"
         android:largeHeap="true"
         android:name="${applicationName}"
@@ -70,11 +70,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />  
                 <data
-                    android:scheme="ebroker"
-                    android:host="ebroker.wrteam.me"/>
+                    android:scheme="aqarcoom"
+                    android:host="link.aqarcoom.com"/>
                 <data
                     android:scheme="ebroker"
-                    android:host="ebrokerweb.wrteam.me"/>
+                    android:host="aqarcoom.com"/>
                 
             </intent-filter>
 
