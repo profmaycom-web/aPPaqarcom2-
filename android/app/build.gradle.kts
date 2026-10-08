@@ -16,7 +16,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.ebroker.wrteam"
+    namespace = "com.aqarcoom.userapp"
     compileSdk = 36
     ndkVersion = "29.0.14033849"
 
@@ -31,7 +31,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.ebroker.wrteam"
+        applicationId = "com.aqarcoom.userapp"
         minSdk = 24
         targetSdk = 36
         versionCode = flutter.versionCode
