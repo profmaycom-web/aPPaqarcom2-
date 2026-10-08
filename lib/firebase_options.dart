@@ -49,23 +49,23 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_KEY',
-    appId: '1:63168540332:android:8b13b90751cb235f623909',
-    messagingSenderId: '63168540332',
-    projectId: 'ebroker-wrteam',
-    storageBucket: 'ebroker-wrteam.appspot.com',
+    apiKey: 'AIzaSyCyuWXN_Kj46m2WGqT4VpaUAsZRrCOVgKk',
+    appId: '1:447041223337:android:57a5bd81fe92d1667047b8',
+    messagingSenderId: '447041223337',
+    projectId: 'aqarcom-broker',
+    storageBucket: 'aqarcom-broker.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDsuxFQVKBoURt070e56_GxUWDglHGTABC',
-    appId: '1:63168540332:ios:0d980b41297ce2ef623909',
-    messagingSenderId: '63168540332',
-    projectId: 'ebroker-wrteam',
-    storageBucket: 'ebroker-wrteam.appspot.com',
+    apiKey: 'AIzaSyBzQds14yERwU3zWjGW7glxi1KqC1aPY-M',
+    appId: '1:447041223337:ios:ef6c46b11ec262d97047b8',
+    messagingSenderId: '447041223337',
+    projectId: 'aqarcom-broker',
+    storageBucket: 'aqarcom-broker.firebasestorage.app',
     androidClientId:
-        '63168540332-bf5kqt19bbbq0ub3quibe67tfi7hjc1v.apps.googleusercontent.com',
+        '447041223337-0ciuk99ou4bc3aq4lrd1qfaj8ohj5fai.apps.googleusercontent.com',
     iosClientId:
-        '63168540332-b8snl3ggfeaosrq8acqc11npalhouus5.apps.googleusercontent.com',
-    iosBundleId: 'com.ebroker.wrteam',
+        '447041223337-ihrndqdi6ieleldnbjerbrapk3fkr6q3.apps.googleusercontent.com',
+    iosBundleId: 'com.aqarcoom.userapp',
   );
 }

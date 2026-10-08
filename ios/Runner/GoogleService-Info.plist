@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>63168540332-b8snl3ggfeaosrq8acqc11npalhouus5.apps.googleusercontent.com</string>
+	<string>447041223337-ihrndqdi6ieleldnbjerbrapk3fkr6q3.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.63168540332-b8snl3ggfeaosrq8acqc11npalhouus5</string>
+	<string>com.googleusercontent.apps.447041223337-ihrndqdi6ieleldnbjerbrapk3fkr6q3</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>63168540332-bf5kqt19bbbq0ub3quibe67tfi7hjc1v.apps.googleusercontent.com</string>
+	<string>447041223337-0ciuk99ou4bc3aq4lrd1qfaj8ohj5fai.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDsuxFQVKBoURt070e56_GxUWDglHGTABC</string>
+	<string>AIzaSyBzQds14yERwU3zWjGW7glxi1KqC1aPY-M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>63168540332</string>
+	<string>447041223337</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ebroker.wrteam</string>
+	<string>com.aqarcoom.userapp</string>
 	<key>PROJECT_ID</key>
-	<string>ebroker-wrteam</string>
+	<string>aqarcom-broker</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ebroker-wrteam.appspot.com</string>
+	<string>aqarcom-broker.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:63168540332:ios:0d980b41297ce2ef623909</string>
+	<string>1:447041223337:ios:ef6c46b11ec262d97047b8</string>
 </dict>
 </plist>
