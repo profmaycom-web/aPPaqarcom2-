@@ -7,8 +7,8 @@ class AppConfig {
   // Identity
   // ---------------------------------------------------------------------------
 
-  static const String applicationName = 'eBroker';
-  static const String androidPackageName = 'com.ebroker.wrteam';
+  static const String applicationName = 'عقاركم';
+  static const String androidPackageName = 'com.aqarcoom.userapp';
 
   // ---------------------------------------------------------------------------
   // Network / API
@@ -17,12 +17,12 @@ class AppConfig {
   // Remove Debug Logger Before Update
 
   /// Base host URL. Change this to point at a different backend environment.
-  static const String hostUrl = 'https://ebroker.wrteam.me';
+  static const String hostUrl = 'https://link.aqarcoom.com';
 
   ///   ebroker.wrteam.me
 
   /// Web URL used when building share links for properties, projects, etc.
-  static const String shareNavigationWebUrl = 'ebrokerweb.wrteam.me';
+  static const String shareNavigationWebUrl = 'aqarcoom.com';
 
   ///   ebrokerweb.wrteam.me
 
@@ -65,7 +65,7 @@ class AppConfig {
   static const int otpResendSecondForEmail = 600;
 
   /// Default country dial code shown on the login screen. Do not add '+'.
-  static const String defaultCountryCode = '91';
+  static const String defaultCountryCode = '20';
 
   // ---------------------------------------------------------------------------
   // Lottie / Progress animations
